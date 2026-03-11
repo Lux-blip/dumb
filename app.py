@@ -1069,3 +1069,1040 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
+# ============ FEATURES 51–100 ============
+
+# ===== 51 =====
+st.markdown("**— 51 —**")
+st.subheader("Cursed Ice Breaker Questions")
+st.caption("for meetings nobody wanted")
+ICEBREAKERS = [
+    "If your left shoe could talk, what would it say about you?",
+    "What sound do you think the color blue makes?",
+    "If procrastination were an Olympic sport, what would your medal ceremony look like?",
+    "Describe your Monday using only condiments.",
+    "If your sleep schedule were a country, what would its flag look like?",
+    "What vegetable best represents your current emotional state?",
+    "If your inbox were a natural disaster, what kind would it be?",
+    "Rate your life as a Yelp review. One sentence only.",
+    "What is the most aggressively mediocre thing about you?",
+    "If your mood were a font, what font would it be and why is it Comic Sans?",
+]
+if st.button("🧊 Break the Ice", key="ice_btn"):
+    st.info(f"❓ {random.choice(ICEBREAKERS)}")
+st.markdown("---")
+
+# ===== 52 =====
+st.markdown("**— 52 —**")
+st.subheader("Dramatic Narrator")
+st.caption("your life, but cinematic")
+NARRATOR_LINES = [
+    "Little did they know, this would be the last time they checked their email before 10am.",
+    "She opened the fridge. It was empty. As it always had been. As it always would be.",
+    "He said 'I'll just watch one more episode.' History would remember this moment.",
+    "The notification appeared at 11:47pm. It was a LinkedIn connection request.",
+    "They had been staring at the cursor for 20 minutes. The document remained blank.",
+    "She typed 'haha' but felt nothing.",
+    "He refreshed the page. Still no reply. He refreshed again. This was his life now.",
+    "The meeting began at 9. By 9:04, three souls had already left their bodies.",
+    "She said 'sounds good' and immediately forgot what she had agreed to.",
+    "He closed 47 tabs. Opened 52 new ones. Order had been restored.",
+]
+if st.button("🎬 Narrate My Life", key="narrator_btn"):
+    with st.spinner("zooming in dramatically..."):
+        time.sleep(0.7)
+    st.info(f"🎙️ *{random.choice(NARRATOR_LINES)}*")
+st.markdown("---")
+
+# ===== 53 =====
+st.markdown("**— 53 —**")
+st.subheader("Unnecessary Warning Labels")
+st.caption("for everyday objects that don't need them")
+WARNINGS = [
+    "⚠️ CHAIR: May cause sitting. Prolonged use leads to being seated.",
+    "⚠️ MIRROR: Reflection may not match self-perception. Consult therapist.",
+    "⚠️ COFFEE MUG: Contains hot liquid. You know this. You always do this anyway.",
+    "⚠️ ALARM CLOCK: Will cause morning. Cannot be held liable for Monday.",
+    "⚠️ PHONE: Prolonged use may result in knowing things you didn't want to know.",
+    "⚠️ PILLOW: Extremely comfortable. May render user non-functional.",
+    "⚠️ FRIDGE: Opens easily. Closes in disappointment. Cycle repeats.",
+    "⚠️ CALENDAR: Contains dates. Some of these dates have things on them. You forgot.",
+    "⚠️ NOTEBOOK: 97% probability of remaining blank. Handle with low expectations.",
+    "⚠️ WIFI ROUTER: Turning off and on again will fix it. You will try everything else first.",
+]
+if st.button("⚠️ Generate Warning", key="warning_btn"):
+    st.warning(random.choice(WARNINGS))
+st.markdown("---")
+
+# ===== 54 =====
+st.markdown("**— 54 —**")
+st.subheader("Villain Origin Story Generator")
+st.caption("everyone has one")
+VILLAIN_ORIGINS = [
+    "It started the day the printer said it was out of ink. It was not out of ink.",
+    "The turning point was when someone put a reply-all on a 200-person email chain. Twice.",
+    "They were normal once. Then someone ate their clearly labeled lunch from the office fridge.",
+    "The descent began with a software update that moved the button they used every day.",
+    "It was the third time in a row that their headphones got tangled in under 10 seconds.",
+    "One day, someone said 'can you hear me?' on a call. Then said it again. Then again.",
+    "The moment the self-checkout machine said 'unexpected item in bagging area' for no reason.",
+    "It was the day they had to explain, for the fifth time, how to attach a file to an email.",
+    "The WiFi dropped mid-upload. The file was gone. They were never the same.",
+    "They had been put on hold for 47 minutes. The hold music was a pan flute rendition of Havana.",
+]
+if st.button("😈 Generate Origin Story", key="villain_btn"):
+    with st.spinner("descending into darkness..."):
+        time.sleep(0.8)
+    st.error(f"😈 {random.choice(VILLAIN_ORIGINS)}")
+st.markdown("---")
+
+# ===== 55 =====
+st.markdown("**— 55 —**")
+st.subheader("Extremely Specific Compliments")
+st.caption("hyper-targeted validation")
+SPECIFIC_COMPLIMENTS = [
+    "The way you close a bag of chips before putting it back is genuinely admirable.",
+    "Your specific walk to the kitchen at 11pm shows real character.",
+    "The face you make when pretending to understand something is incredibly convincing.",
+    "Your method of ignoring notifications is an art form.",
+    "The pause before you answer a question makes you seem extremely wise.",
+    "Your ability to find the exact right meme at the exact right moment is a gift.",
+    "The noise you make when you sit down has a lot of personality.",
+    "The way you say 'hm' while reading something is genuinely compelling.",
+    "Your technique for pretending to be busy is top tier.",
+    "The face you make when something loads slowly deserves its own exhibit.",
+]
+if st.button("🎯 Compliment Me Specifically", key="specific_btn"):
+    st.success(f"✨ {random.choice(SPECIFIC_COMPLIMENTS)}")
+st.markdown("---")
+
+# ===== 56 =====
+st.markdown("**— 56 —**")
+st.subheader("Text Message Tone Analyzer")
+st.caption("what did they REALLY mean")
+TONES = [
+    ("'k'", "They are fine. They are NOT fine. Tread carefully."),
+    ("'ok!'", "Aggressively pleasant. Something is wrong."),
+    ("'haha'", "This was not funny to them. This ended the conversation."),
+    ("'no worries!'", "There are worries. Significant worries."),
+    ("'sounds good'", "They stopped reading after the first sentence."),
+    ("'sure'", "They do not want to. They will do it anyway. Resentfully."),
+    ("'lol'", "Could mean anything. Unknowable. Do not ask for clarification."),
+    ("'noted'", "Filed under: will not act on this."),
+    ("'...'", "They are typing. They deleted it. You will never know what it said."),
+    ("'per my last email'", "They are composed on the outside. Not on the inside."),
+]
+if st.button("📱 Analyze a Message", key="tone_btn"):
+    text, analysis = random.choice(TONES)
+    st.markdown(f"**Message:** {text}")
+    st.info(f"**What it means:** {analysis}")
+st.markdown("---")
+
+# ===== 57 =====
+st.markdown("**— 57 —**")
+st.subheader("Overheard at the Office")
+st.caption("actual sentences that were said by real humans")
+OVERHEARD = [
+    "'We need to blue-sky this and then circle back with a 30,000 foot view.'",
+    "'Let's not boil the ocean here, just move the needle on the low-hanging fruit.'",
+    "'I want to take this offline but also online. Both. Neither. I'll send a calendar invite.'",
+    "'Can we get alignment on this before we get alignment on this?'",
+    "'Going forward, going backward is no longer an option.'",
+    "'We're pivoting our pivot strategy to be more agile about our agility.'",
+    "'Let's not reinvent the wheel but also let's completely reinvent the wheel.'",
+    "'I don't have bandwidth for this right now, but I also don't have bandwidth to say I don't have bandwidth.'",
+    "'This is a solution in search of a problem, and the problem is that we have no solution.'",
+    "'Let's take a step back to take two steps forward by stepping sideways.'",
+]
+if st.button("👂 What Did They Say", key="overheard_btn"):
+    st.warning(f"💬 {random.choice(OVERHEARD)}")
+st.markdown("---")
+
+# ===== 58 =====
+st.markdown("**— 58 —**")
+st.subheader("The 'Is It a Red Flag or Just a Tuesday' Classifier")
+st.caption("nuance machine")
+CLASSIFIER = [
+    ("Hasn't texted back in 3 days", "Red flag OR they lost their phone OR they are living their life. Spin a wheel."),
+    ("Owns 14 candles", "Green flag. Ambiance is a value."),
+    ("Uses dark mode on everything", "Neutral. Millions of people do this. You also do this."),
+    ("Has seen every Marvel movie twice", "That's just time management. Jury's out."),
+    ("Alphabetizes their spices", "Concerning OR extremely organized. Could go either way."),
+    ("Takes 45 minutes to order coffee", "Red flag OR they really care about coffee. Which is also a flag."),
+    ("Hasn't updated their phone in 2 years", "Chaotic neutral. Respect."),
+    ("Cries at commercials", "Green flag. They feel things. Rare."),
+    ("Has a 'work playlist' with 1 song on it", "Normal. The song is probably Mr. Brightside."),
+    ("Refers to their cat as their 'child'", "No notes. Correct behavior."),
+]
+if st.button("🔎 Classify the Behavior", key="classifier_btn"):
+    behavior, verdict = random.choice(CLASSIFIER)
+    st.markdown(f"**Behavior:** {behavior}")
+    st.info(f"**Verdict:** {verdict}")
+st.markdown("---")
+
+# ===== 59 =====
+st.markdown("**— 59 —**")
+st.subheader("Corporate Email Translator")
+st.caption("decode the subtext")
+CORP_EMAILS = [
+    ("As per my previous email...", "You ignored this. I am noting that you ignored this. For the record."),
+    ("Hope this finds you well.", "I don't care how you are. Let's get to it."),
+    ("Just checking in!", "You haven't responded in 6 days. This is the third follow-up."),
+    ("Thanks for your patience.", "This took way too long and we both know it."),
+    ("Going forward...", "You messed up. We won't say that. But: you messed up."),
+    ("I wanted to loop you in.", "You're being CC'd so you can't say you didn't know."),
+    ("Let me know if you have any questions.", "Please don't have any questions."),
+    ("As discussed...", "We said this out loud. I'm now writing it. For documentation purposes."),
+    ("Happy to jump on a call!", "I do not want to jump on a call."),
+    ("Friendly reminder...", "Not friendly. A reminder. Framed as friendly to soften the passive aggression."),
+]
+if st.button("📧 Translate an Email", key="email_btn"):
+    phrase, translation = random.choice(CORP_EMAILS)
+    st.markdown(f"**They wrote:** *\"{phrase}\"*")
+    st.error(f"**They meant:** {translation}")
+st.markdown("---")
+
+# ===== 60 =====
+st.markdown("**— 60 —**")
+st.subheader("Cryptid Name Generator")
+st.caption("what would your cryptid name be")
+CRYPTID_A = ["The", "A", "Old", "Swamp", "Midnight", "Hollow", "Shadowed", "The Wandering"]
+CRYPTID_B = ["Whispering", "Lurking", "Forgotten", "Pale", "Damp", "Restless", "Blinking", "Shuffling"]
+CRYPTID_C = ["One", "Figure", "Shape", "Presence", "Thing", "Entity", "Creature", "Being"]
+if st.button("👁️ Generate My Cryptid Name", key="cryptid_btn"):
+    name = f"{random.choice(CRYPTID_A)} {random.choice(CRYPTID_B)} {random.choice(CRYPTID_C)}"
+    st.success(f"**You are:** {name}")
+    st.caption("spotted near the edge of a parking lot at 2am. several witnesses. no photos.")
+st.markdown("---")
+
+# ===== 61 =====
+st.markdown("**— 61 —**")
+st.subheader("What Energy Are You Giving Right Now")
+st.caption("a scientific energy audit")
+ENERGIES = [
+    ("🧟 Zombie energy", "Functioning. Technically. The lights are on."),
+    ("🌊 Flowing water energy", "Going wherever. Unbothered. Slightly dangerous."),
+    ("🕯️ Single candle energy", "Warm. Flickering. Could go out at any moment."),
+    ("🧲 Main character energy", "Everything revolves around you right now. You didn't ask for this."),
+    ("🪨 Rock energy", "Immovable. Ancient. Not doing anything today."),
+    ("🌀 Drain energy", "Spiraling slowly downward. It's fine. Drains are important."),
+    ("📡 Signal energy", "Broadcasting constantly. Nobody is tuning in."),
+    ("🧂 Salt energy", "Preservation mode. Slight bitterness. Long shelf life."),
+    ("🌿 Houseplant energy", "Alive. Mostly. Needs water. Not asking for much."),
+    ("⚡ Static electricity energy", "Unpredictable. Shocking to encounter. Attracted to carpets."),
+]
+if st.button("🔋 Audit My Energy", key="energy_btn"):
+    with st.spinner("scanning your aura..."):
+        time.sleep(0.8)
+    label, desc = random.choice(ENERGIES)
+    st.markdown(f"### {label}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 62 =====
+st.markdown("**— 62 —**")
+st.subheader("Wrong Motivational Quote")
+st.caption("inspiration, but incorrect")
+WRONG_QUOTES = [
+    "\"Every day is a gift.\" — The gift is non-returnable. No receipt.",
+    "\"You miss 100% of the shots you don't take.\" — You also miss most of the ones you do take. Statistically.",
+    "\"Be the change you wish to see in the world.\" — The world has not noticed.",
+    "\"Work smarter, not harder.\" — Nobody has explained the difference yet.",
+    "\"Your only limit is your mind.\" — Also time, money, sleep deprivation, and physics.",
+    "\"Dream big.\" — Dreams are free. The rest is not.",
+    "\"Good things come to those who wait.\" — Also bad things. Things just come. Timing is chaos.",
+    "\"Everything happens for a reason.\" — The reason is usually a series of unrelated coincidences.",
+    "\"Live, laugh, love.\" — In that order. Results not guaranteed.",
+    "\"Today is the first day of the rest of your life.\" — Tomorrow also is. So is every day. That's how time works.",
+]
+if st.button("💬 Inspire Me Incorrectly", key="misquote_btn"):
+    st.info(f"🌅 {random.choice(WRONG_QUOTES)}")
+st.markdown("---")
+
+# ===== 63 =====
+st.markdown("**— 63 —**")
+st.subheader("The Snack Oracle")
+st.caption("what snack are you, spiritually")
+SNACK_READINGS = [
+    ("🥨 Pretzel", "Twisted but salty. A complex individual. Goes with everything. Underrated."),
+    ("🍿 Popcorn", "Light until suddenly not. Unpredictable. Sometimes burns."),
+    ("🧀 String Cheese", "Methodical. Likes to take things one layer at a time. People find this annoying."),
+    ("🍫 Chocolate", "Smooth on the outside. Complicated within. Melts under pressure."),
+    ("🥜 Peanut Butter", "Dense. Sticks to things. A lot going on. Best in small doses."),
+    ("🌮 Chips and Salsa", "Can't stop at one. Addictive personality. The salsa is your inner life."),
+    ("🍪 Cookie", "Warm, familiar, reliable. Occasionally crumbles. Still good."),
+    ("🍉 Watermelon", "Great energy. Mostly water. Summer vibes only."),
+    ("🧆 Hummus", "Earthy. Sophisticated surface. Requires others to function. The crackers are your support system."),
+    ("🥐 Croissant", "High maintenance. Worth it. Takes forever. Worth it."),
+]
+if st.button("🔮 Consult the Snack Oracle", key="snack_btn"):
+    with st.spinner("the oracle is considering..."):
+        time.sleep(0.9)
+    snack, reading = random.choice(SNACK_READINGS)
+    st.markdown(f"### You are: {snack}")
+    st.info(reading)
+st.markdown("---")
+
+# ===== 64 =====
+st.markdown("**— 64 —**")
+st.subheader("Overly Formal Letter for a Simple Request")
+st.caption("when you need to ask someone to please stop microwaving fish")
+FORMAL_LETTERS = [
+    ("To Whoever Is Microwaving Fish",
+     "Dear Occupant of the Second-Floor Kitchen,\n\nIt is with the utmost gravity that I write to formally request a cessation of the thermal preparation of aquatic protein in the shared microwave unit. The resulting aromatic emissions have been assessed as 'deeply personal' by affected parties.\n\nYours formally,\nA Colleague"),
+    ("Regarding the Empty Toilet Paper Roll",
+     "Dear Unknown Party,\n\nI write in a spirit of collegial cooperation to address a matter of some urgency. The cardboard cylinder which remains fixed to the holder does not, in fact, constitute a replacement. I respectfully request corrective action at your earliest convenience.\n\nWith restrained frustration,\nA Fellow Occupant"),
+    ("Re: The Passive-Aggressive Dish Situation",
+     "Dear Housemate or Colleague,\n\nI wish to draw your attention to the ceramic items currently residing in the sink, which have been there since Tuesday and may now qualify as permanent fixtures. Please advise on your intended timeline.\n\nRegards,\nThe Person Who Washed Their One Mug Around Them"),
+]
+if st.button("📜 Generate Formal Letter", key="formal_btn"):
+    subject, body = random.choice(FORMAL_LETTERS)
+    st.markdown(f"**RE: {subject}**")
+    st.code(body, language=None)
+st.markdown("---")
+
+# ===== 65 =====
+st.markdown("**— 65 —**")
+st.subheader("Yelp Review for a Life Event")
+st.caption("★★★☆☆")
+YELP_REVIEWS = [
+    "★★☆☆☆ — Monday. Came back again despite last week. Staff (alarm clock) aggressive. Coffee adequate. Would not recommend but will return.",
+    "★★★★☆ — Nap. Arrived skeptical, stayed longer than intended. Atmosphere excellent. Slight grogginess upon exit. Would visit again.",
+    "★☆☆☆☆ — Meeting that could have been an email. No parking. Ran over time. No snacks. Will not be back. Too late, already scheduled for Tuesday.",
+    "★★★☆☆ — Grocery store at 6pm on a Sunday. Chaotic. Emotional. Ran into someone I went to school with. We both pretended not to see each other. Lost 2 stars.",
+    "★★★★★ — Lying down on the couch. Exceptional value. Free. Highly accessible. 10/10 would do nothing again.",
+    "★★☆☆☆ — Replying to a message I've been avoiding for 11 days. Stressful lead-up, anticlimactic resolution. The response was 'haha ok'. I have questions.",
+    "★★★☆☆ — My own birthday. Didn't ask for this, came anyway. Cake was good. Had to be present the whole time. Mixed feelings. Will not repeat.",
+]
+if st.button("⭐ Write a Yelp Review", key="yelp_btn"):
+    st.warning(f"📍 {random.choice(YELP_REVIEWS)}")
+st.markdown("---")
+
+# ===== 66 =====
+st.markdown("**— 66 —**")
+st.subheader("Out of Office Message Generator")
+st.caption("for when you're gone and also when you're not")
+OOO_MESSAGES = [
+    "I am currently out of office, out of patience, and out of bandwidth. I will return when I have located at least one of these.",
+    "I am away from my desk. My desk is not away from me. It follows me everywhere. But I will respond on Monday.",
+    "Thank you for your email. I have received it. I have read it. I have not yet made peace with it. I will respond shortly.",
+    "I am on vacation. I will see your email. I will think about it. I will respond when I am ready and not a moment before.",
+    "I am currently attending a conference where I am learning things that could have been a document. I return Friday.",
+    "I am out of the office until further notice. If this is urgent, please reconsider whether it is urgent.",
+    "I will be away from email for the next several days. During this time I will be a slightly more functional version of myself.",
+]
+if st.button("✈️ Generate OOO Message", key="ooo_btn"):
+    msg = random.choice(OOO_MESSAGES)
+    st.info(f"📬 {msg}")
+    st.code(msg, language=None)
+st.markdown("---")
+
+# ===== 67 =====
+st.markdown("**— 67 —**")
+st.subheader("Unnecessary Proverb Generator")
+st.caption("old wisdom. new irrelevance.")
+PROVERBS = [
+    "A watched pot never boils, but an unwatched one will absolutely boil over and ruin your stove.",
+    "The early bird gets the worm, but the second mouse gets the cheese. Choose your metaphor carefully.",
+    "You can lead a horse to water but you cannot make it reply to your email within the hour.",
+    "A rolling stone gathers no moss, but it does gather a lot of questions about its direction.",
+    "People who live in glass houses shouldn't throw stones, but more urgently, they should invest in curtains.",
+    "All that glitters is not gold. Some of it is very realistic glitter, which is worse.",
+    "The pen is mightier than the sword, but the passive-aggressive email is mightier than both.",
+    "Don't count your chickens before they hatch. Don't count them after either. Let the chickens have privacy.",
+    "A bird in the hand is worth two in the bush, unless the bird is biting you, in which case let it go.",
+    "Good things come to those who wait, but good things also come to those who act, so the proverb is not useful.",
+]
+if st.button("📖 Dispense Proverb", key="proverb_btn"):
+    st.info(f"📜 {random.choice(PROVERBS)}")
+st.markdown("---")
+
+# ===== 68 =====
+st.markdown("**— 68 —**")
+st.subheader("Diagnosis: What Kind of Tired Are You")
+st.caption("there are many kinds")
+TIRED_TYPES = [
+    ("😴 Regular Tired", "Needs sleep. Has not slept. Will not sleep yet."),
+    ("🧠 Brain Tired", "Can't process simple things. Stared at a sentence for 4 minutes. Moved on."),
+    ("👥 People Tired", "Technically fine. Just needs to not interact with anyone for 2-5 business days."),
+    ("📋 Admin Tired", "Has 14 forms to fill out. Has opened them. Has closed them. Has opened them again."),
+    ("🌍 Existentially Tired", "Functioning but questioning the broader context. Will be fine. Probably."),
+    ("😤 Tired of a Specific Person", "You know who it is. They know who they are. Nothing will be said."),
+    ("✅ Done-Everything Tired", "Rare. Productive. Earned. Take the nap."),
+    ("🔄 Same Day Over and Over Tired", "Tuesday has happened several times this week already."),
+    ("📱 Screen Tired", "Eyes like sandpaper. Has looked at a screen for 11 hours. Looking at one now."),
+    ("🎭 Pretending-to-be-Fine Tired", "Performing wellness. The performance is convincing. The performer is tired."),
+]
+if st.button("😩 Diagnose My Tired", key="tired_btn"):
+    with st.spinner("running diagnostics..."):
+        time.sleep(0.6)
+    kind, desc = random.choice(TIRED_TYPES)
+    st.markdown(f"### Diagnosis: {kind}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 69 =====
+st.markdown("**— 69 —**")
+st.subheader("The Museum of Minor Inconveniences")
+st.caption("exhibits open daily")
+EXHIBITS = [
+    "🖼️ EXHIBIT 7A: *The Charger That Was Just Too Short* — oil on canvas, 2019. On permanent loan from the nightstand.",
+    "🖼️ EXHIBIT 12: *The Bag That Ripped Right At the Bottom* — mixed media, eggs and other groceries.",
+    "🖼️ EXHIBIT 3: *The Earphone That Stopped Working on One Side* — sound installation. Silence on the right.",
+    "🖼️ EXHIBIT 19: *The Autocorrect That Changed the Wrong Word at the Wrong Time* — digital print. The recipient still has screenshots.",
+    "🖼️ EXHIBIT 8: *The Cup That Dribbled Even Though It's a Normal Cup* — ceramic, somehow betrayal.",
+    "🖼️ EXHIBIT 44: *The Parking Space That Was Almost Close* — site-specific installation, 1.5 blocks away.",
+    "🖼️ EXHIBIT 2: *The Pen That Worked Yesterday* — performance art. Daily. Ongoing.",
+    "🖼️ EXHIBIT 31: *The Chip Bag That Was 40% Air* — inflatable sculpture, false promises.",
+]
+if st.button("🏛️ View an Exhibit", key="museum_btn"):
+    st.info(random.choice(EXHIBITS))
+st.markdown("---")
+
+# ===== 70 =====
+st.markdown("**— 70 —**")
+st.subheader("Your Protagonist Archetype")
+st.caption("what trope are you in the movie of your life")
+ARCHETYPES = [
+    ("🕵️ The One Who Knows Too Much", "You've noticed things. You've said nothing. You're waiting for the right moment. It hasn't come."),
+    ("😴 The Reluctant Hero", "You didn't ask for any of this. You will eventually do the thing. You need 20 more minutes first."),
+    ("📚 The Wise Background Character", "You don't have the main plot. You have all the information the main character needs. Nobody asks."),
+    ("🔁 The One Going Through a Montage", "Things are changing. There's music. You're not sure it's working. It might be working."),
+    ("🚪 The Person Who Just Wants to Leave", "You have somewhere else to be. You've been at this party for 45 minutes too long."),
+    ("🤝 The Loyal Sidekick Who Deserves Better", "You're doing 60% of the work. You're getting 0% of the credit. The sequel will correct this."),
+    ("🌀 The Chaos Element", "You arrive and things happen. Not your fault. Technically your fault. Hard to prove."),
+    ("😌 The Character Who Somehow Has It Together", "You appear calm. You are not calm. The appearance is load-bearing."),
+]
+if st.button("🎬 Find My Archetype", key="archetype_btn"):
+    with st.spinner("analyzing the narrative arc of your life..."):
+        time.sleep(1)
+    kind, desc = random.choice(ARCHETYPES)
+    st.markdown(f"### {kind}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 71 =====
+st.markdown("**— 71 —**")
+st.subheader("Generic Social Media Caption Generator")
+st.caption("for when you need words under the photo")
+CAPTIONS = [
+    "Chasing sunsets and good vibes ✨ [location TBD] [filter: whatever]",
+    "Sometimes you just need to [activity]. 🙏 Grateful. Blessed. Caffeinated.",
+    "Living, laughing, and occasionally functioning. #MondayMotivation #Actually It's Thursday",
+    "Not all who wander are lost, but I definitely parked somewhere weird.",
+    "This [object/place/food] understood the assignment. 💅",
+    "POV: you're [doing thing] and [vague emotion] about it",
+    "Soft life era. Nap era. Snack era. All the eras simultaneously.",
+    "Just a [person/thing] standing in front of [other thing] asking it to [simple request].",
+    "Main character behavior. Supporting character budget. 🎬",
+    "No notes. [There are notes. I have notes. I am keeping them to myself.]",
+]
+if st.button("📸 Generate Caption", key="caption_btn"):
+    st.success(f"✍️ {random.choice(CAPTIONS)}")
+st.markdown("---")
+
+# ===== 72 =====
+st.markdown("**— 72 —**")
+st.subheader("What Your Browser History Says About You")
+st.caption("a character study")
+BROWSER_HISTORIES = [
+    "12:04am: 'is it normal to [thing]' — 12:05am: 'how common is [thing]' — 12:07am: '[celebrity] age' — 12:09am: 'what country has no extradition'",
+    "'can dogs eat [food]' x7 — 'signs your dog is judging you' — 'do dogs have inner monologues' — 'dog therapist near me'",
+    "'how to be productive' — 'why am I not productive' — 'famous people who were unproductive' — 'is being unproductive sometimes okay' — YouTube",
+    "'what time does [place] close' — '[place] closed already' — 'places open near me right now' — 'cereal nutrition facts'",
+    "'how to start a conversation' — 'how to end a conversation' — 'how to avoid conversations entirely' — 'remote jobs no talking required'",
+    "'free things to do this weekend' — 'cheap things to do this weekend' — 'things to do this weekend' — 'things to do from couch' — Netflix",
+    "'is [symptom] serious' — 'symptoms of [disease]' — 'do I have [disease]' — 'WebMD' — 'I'm fine actually' — 'calming playlists'",
+]
+if st.button("🔍 Reveal Browser History", key="browser_btn"):
+    st.error(f"🕵️ *{random.choice(BROWSER_HISTORIES)}*")
+st.markdown("---")
+
+# ===== 73 =====
+st.markdown("**— 73 —**")
+st.subheader("The 'What's My Core Wound' Machine")
+st.caption("extremely unqualified psychological assessment")
+CORE_WOUNDS = [
+    "Your core wound: someone once called you 'too much' and you've been 'not enough' ever since. The gap is interesting.",
+    "Your core wound: you watched too many people be rewarded for being loud and now you're unsure if being thoughtful was a mistake.",
+    "Your core wound: you said something vulnerable once and the room moved on very quickly. You have not said anything vulnerable since.",
+    "Your core wound: you tried really hard at something and it didn't work and you haven't tried quite that hard again.",
+    "Your core wound: someone important made you feel like your feelings were inconvenient. They were wrong. Your feelings are very reasonable.",
+    "Your core wound: you learned very early to be useful, and now you don't know how to exist when you're not.",
+    "Your core wound: at some point, love felt conditional. It probably wasn't. It probably felt that way anyway.",
+    "Your core wound: you did the thing correctly and nobody noticed. You're still kind of waiting for someone to notice.",
+]
+if st.button("🫀 Find My Core Wound", key="wound_btn"):
+    with st.spinner("gently excavating..."):
+        time.sleep(1.2)
+    st.info(f"💙 {random.choice(CORE_WOUNDS)}")
+    st.caption("(this is a joke feature on a dumb website. but also, you're doing okay.)")
+st.markdown("---")
+
+# ===== 74 =====
+st.markdown("**— 74 —**")
+st.subheader("Extremely Niche Advice Column")
+st.caption("Q&A for very specific situations")
+ADVICE_QA = [
+    ("Q: I accidentally liked a photo from 2019 while stalking someone's Instagram. What do I do?",
+     "A: Unlike immediately. Put the phone down. Leave the country if necessary. Never speak of this again. They saw it."),
+    ("Q: I've been saying someone's name wrong for 2 years. Do I correct myself?",
+     "A: No. You take this to the grave. You spell it correctly in writing. You die knowing."),
+    ("Q: I nodded along to a story I wasn't listening to. Now I have to pretend I know what happened.",
+     "A: 'That's so [them]' works for any story about anyone. Nod twice. Change subject."),
+    ("Q: I've been waiting for them to text back for 3 days. Do I text again?",
+     "A: You may send one follow-up. One. Casual. Then you leave it. You go live your life. You have one."),
+    ("Q: I said 'you too' when the waiter said 'enjoy your meal'.",
+     "A: Classic. They've heard it 400 times. It's fine. You're fine. Order dessert."),
+    ("Q: I've been in a meeting for 45 minutes and I have no idea what we've decided.",
+     "A: Wait until someone says 'so going forward'. That's the decision. Write it down. Act like you knew."),
+]
+if st.button("💌 Get Advice", key="advice_col_btn"):
+    q, a = random.choice(ADVICE_QA)
+    st.markdown(f"*{q}*")
+    st.info(a)
+st.markdown("---")
+
+# ===== 75 =====
+st.markdown("**— 75 —**")
+st.subheader("Speed Round: Completely Useless Trivia")
+st.caption("knowledge you will deploy at exactly the wrong moment")
+TRIVIA = [
+    ("The shortest war in history lasted how long?", "38–45 minutes. Anglo-Zanzibar War, 1896. Someone had a very productive morning."),
+    ("What is the longest word you can type with only the top row of a keyboard?", "'Typewriter'. Which is a bit on the nose."),
+    ("How many times does a hummingbird flap its wings per second?", "About 50–80 times. It does not know this and doesn't care."),
+    ("What is the fear of long words called?", "Hippopotomonstrosesquippedaliophobia. Someone made a choice."),
+    ("What animal has rectangular pupils?", "Goats. Also some octopuses. The world is strange."),
+    ("The dot over a lowercase i has a name. What is it?", "A tittle. Yes, really. Tittle."),
+    ("What percentage of the ocean is unexplored?", "About 80%. There is so much down there. This should concern you more than it does."),
+    ("How many hearts does an octopus have?", "Three. Two pump blood to the gills. One pumps it to the rest. Overachiever."),
+]
+if st.button("⚡ Speed Trivia", key="trivia_btn"):
+    q, a = random.choice(TRIVIA)
+    st.markdown(f"**Q:** {q}")
+    with st.spinner("thinking..."):
+        time.sleep(1.5)
+    st.success(f"**A:** {a}")
+st.markdown("---")
+
+# ===== 76 =====
+st.markdown("**— 76 —**")
+st.subheader("Describe Yourself Using Only Stock Photo Keywords")
+st.caption("the algorithm sees you")
+STOCK_KEYWORDS = [
+    "Diverse team. Casual Friday. Pointing at whiteboard. Genuine laughter. Natural light.",
+    "Candid outdoor portrait. Autumnal tones. Looking into distance. Contemplative expression. Soft focus.",
+    "Business casual. Confident stance. Relatable struggle. Laptop on lap. Coffee present.",
+    "Millennial burnout. Urban background. Muted palette. Slightly overwhelmed. Still hustling.",
+    "Cozy interior. Oversized sweater. Hot beverage. Doing fine actually. Stock photo happy.",
+    "Remote worker. Kitchen table. Second monitor. Technically working. Dog somewhere nearby.",
+    "Young professional. Ambitious gaze. Commuting. Slightly underpaid. Very determined.",
+    "Weekend vibes. Golden hour. Effortless style. Doing a regular thing as if it's editorial.",
+]
+if st.button("📷 Generate My Stock Keywords", key="stock_btn"):
+    st.success(f"🏷️ {random.choice(STOCK_KEYWORDS)}")
+st.markdown("---")
+
+# ===== 77 =====
+st.markdown("**— 77 —**")
+st.subheader("Guess the Vibe from the Playlist Title")
+st.caption("music says everything")
+PLAYLIST_VIBES = [
+    ("'songs for driving at night'", "You're processing something. You don't want to talk about it. The road knows."),
+    ("'main character'", "You've committed to a narrative arc. The arc is your commute."),
+    ("'studying' (you're not studying)", "You're sitting near a textbook. The textbook is closed. The playlist is open."),
+    ("'for when I'm sad but like, cozy sad'", "You have made a distinction that therapists respect."),
+    ("'songs to clean to'", "High energy avoidance. The apartment gets clean. The problem does not."),
+    ("'idk'", "You know. You're not ready to name it."),
+    ("'2014'", "You were going through something in 2014. You are still going through it."),
+    ("'villain arc'", "You've been wronged. You're composing yourself. You are preparing."),
+    ("'soft'", "Extremely emotionally available today. Handle with care."),
+    ("'gym' (you haven't gone to the gym)", "Aspirational. The playlist is ready. The shoes are ready. You are on the couch."),
+]
+if st.button("🎵 Read the Playlist Vibe", key="playlist_btn"):
+    title, vibe = random.choice(PLAYLIST_VIBES)
+    st.markdown(f"**Playlist:** *{title}*")
+    st.info(f"**Vibe:** {vibe}")
+st.markdown("---")
+
+# ===== 78 =====
+st.markdown("**— 78 —**")
+st.subheader("Discontinued Product Memorial")
+st.caption("gone but not forgotten")
+PRODUCTS = [
+    "🕯️ In memoriam: Vine. 2012-2017. Six seconds of culture. Gone too soon. The wound remains.",
+    "🕯️ In memoriam: Google Reader. 2005-2013. It organized the internet. The internet did not deserve it.",
+    "🕯️ In memoriam: The headphone jack on iPhones. 2007-2016. Simple. Reliable. Wired. Free.",
+    "🕯️ In memoriam: Blockbuster Video. 1985-2013. One location remains in Bend, Oregon. A monument. A warning.",
+    "🕯️ In memoriam: The physical keyboard on phones. Satisfying. Tactile. Missed by everyone who had one.",
+    "🕯️ In memoriam: MSN Messenger. You set an away message for someone specific. They knew. You knew.",
+    "🕯️ In memoriam: Flash Games. Hundreds of thousands of tiny unhinged masterpieces. Archived. Remembered. Mourned.",
+    "🕯️ In memoriam: The 'poke' on Facebook. Unexplained. Unregulated. Somehow important. Discontinued. For the best.",
+]
+if st.button("🕯️ Pay Respects", key="memorial_btn"):
+    st.info(random.choice(PRODUCTS))
+st.markdown("---")
+
+# ===== 79 =====
+st.markdown("**— 79 —**")
+st.subheader("The Most Unhinged Things a GPS Has Ever Said")
+st.caption("turn left into the void")
+GPS_LINES = [
+    "In 500 feet, turn left. No. Other left. That was wrong. Recalculating.",
+    "You have arrived. You have not arrived. The building is a parking lot. Recalculating.",
+    "Turn right onto [street name it mispronounces with conviction for 3 years].",
+    "Stay on this road for 40 miles. You have 38 miles. You have 37. You will be here a while.",
+    "Take the ferry. There is no ferry. Recalculating. Take the ferry.",
+    "Your destination is on the left. Your destination is a field. Recalculating.",
+    "You have reached your destination. This is not your destination. Goodbye.",
+    "Make a U-turn. Make a U-turn. Make a U-turn. It's fine. Continue straight. I changed my mind.",
+]
+if st.button("🗺️ What Did the GPS Say", key="gps_btn"):
+    st.warning(f"🚗 {random.choice(GPS_LINES)}")
+st.markdown("---")
+
+# ===== 80 =====
+st.markdown("**— 80 —**")
+st.subheader("Powerpoint Slide Title Generator")
+st.caption("for slides that contain nothing")
+SLIDE_TITLES = [
+    "Next Steps and Action Items (TBD)",
+    "Key Takeaways (See Previous Slide)",
+    "The Path Forward: A Framework for a Framework",
+    "Q3 Learnings and Q4 Opportunities (Redacted)",
+    "Alignment Check: Are We Aligned? (Slide 12 of 47)",
+    "Thank You! Questions? (Please No Questions)",
+    "Summary: What We Said in the Last 14 Slides",
+    "Appendix A: Data We Collected but Won't Discuss",
+    "Our Mission and Vision (Same as Last Year)",
+    "Why This Matters: A High-Level Overview of Why This Matters",
+]
+if st.button("📊 Generate Slide Title", key="slide_btn"):
+    title = random.choice(SLIDE_TITLES)
+    st.success(f"📊 **Slide Title:** {title}")
+    st.caption("estimated reading time: 2 seconds. estimated discussion time: 40 minutes.")
+st.markdown("---")
+
+# ===== 81 =====
+st.markdown("**— 81 —**")
+st.subheader("The Feelings Word Finder")
+st.caption("more specific than 'fine'")
+FEELINGS = [
+    ("Antevasin", "Living on the border — not quite in your old life, not yet in the new one."),
+    ("Limerence", "That involuntary obsessive attachment to someone. You know the one."),
+    ("Sonder", "The realization that every passerby has a life as vivid and complex as your own."),
+    ("Vellichor", "The strange wistfulness of a used bookstore."),
+    ("Kenopsia", "The eerie feeling of a place that's usually full of people but is now empty."),
+    ("Monachopsis", "The subtle but persistent feeling of being out of place."),
+    ("Exulansis", "Giving up trying to explain something because others can't relate."),
+    ("Jouska", "A hypothetical conversation you compulsively rehearse in your head."),
+    ("Rubatosis", "The unsettling awareness of your own heartbeat."),
+    ("Onism", "The frustration of being stuck in just one body that can only be in one place at a time."),
+]
+if st.button("💬 Find a Feeling", key="feelings_btn"):
+    word, meaning = random.choice(FEELINGS)
+    st.markdown(f"### {word}")
+    st.info(meaning)
+    st.caption("(from The Dictionary of Obscure Sorrows — a real book that exists)")
+st.markdown("---")
+
+# ===== 82 =====
+st.markdown("**— 82 —**")
+st.subheader("Pitch Your Life as a Netflix Series")
+st.caption("elevator pitch. one sentence.")
+PITCHES = [
+    "A mid-level employee discovers their entire personality is their job title. Six seasons. Cancelled after two.",
+    "A person attempts to finish their to-do list. Comedy. Tragedy. Twelve episodes. The list is never finished.",
+    "One human navigates fourteen open browser tabs across three separate emotional crises. Limited series.",
+    "A coming-of-age story about realizing adulthood is just doing things slightly more expensively. Prestige drama.",
+    "Someone keeps almost sending a text and then not sending it. Character study. Three seasons.",
+    "A true crime documentary about who keeps putting things back in the wrong place in the kitchen.",
+    "One woman, one inbox, one mounting sense that 'unsubscribe' does nothing. Thriller.",
+    "A man learns to parallel park. The series begins in 2019. He has not yet learned.",
+]
+if st.button("🎬 Pitch My Life", key="pitch_btn"):
+    st.success(f"📺 {random.choice(PITCHES)}")
+st.markdown("---")
+
+# ===== 83 =====
+st.markdown("**— 83 —**")
+st.subheader("Definitive Ranking of Ways to Waste Time")
+st.caption("a tier list of procrastination methods")
+WASTE_METHODS = [
+    ("S tier ✨", "Napping. Restorative. Guilt-free if you commit. The gold standard."),
+    ("A tier", "Reorganizing something that didn't need reorganizing. Productive-feeling. Satisfying."),
+    ("B tier", "Watching something you've already seen. Low stakes. Comforting. Known outcome."),
+    ("C tier", "Scrolling without intent. High volume. Low return. Familiar."),
+    ("D tier", "Cleaning as avoidance. Effective cleaning. Ineffective life."),
+    ("F tier 💀", "Reading the comments. Every time. You know. You do it anyway."),
+]
+for tier, desc in WASTE_METHODS:
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        st.markdown(f"**{tier}**")
+    with col2:
+        st.caption(desc)
+st.markdown("---")
+
+# ===== 84 =====
+st.markdown("**— 84 —**")
+st.subheader("Celebrity Look-Alike Generator (But Make It an Object)")
+st.caption("which household item do you most resemble energetically")
+OBJECT_LOOKALIKES = [
+    "You give off strong 'a lamp that's been in 4 different apartments' energy.",
+    "You're very much a middle drawer that has random batteries, chargers for unknown devices, and a birthday candle.",
+    "You radiate 'a comfortable couch that someone put a throw blanket on' vibes.",
+    "You are a whiteboard with something still faintly visible from 2 meetings ago.",
+    "Your energy matches a mug that says something slightly passive aggressive but also kind of true.",
+    "You are a reliable tote bag with a minor structural concern nobody's addressed yet.",
+    "Energetically, you're a sticky note that's been on the monitor so long it's become part of the monitor.",
+    "You give off 'an IKEA bookshelf assembled without the instructions and it's basically fine' energy.",
+]
+if st.button("🪞 Find My Object Twin", key="object_btn"):
+    st.info(f"🏠 {random.choice(OBJECT_LOOKALIKES)}")
+st.markdown("---")
+
+# ===== 85 =====
+st.markdown("**— 85 —**")
+st.subheader("Unsent Message Archive")
+st.caption("things we wrote and deleted")
+UNSENT = [
+    "I've been thinking about what you said and I think you were wrong but I understand why you said it.",
+    "Hey I know it's been a while. I hope you're doing well. [deleted. too vulnerable. sent 'hey' instead. no response.]",
+    "I want to come but I'm not going to come. I'm sorry in advance.",
+    "I noticed what you did and I appreciated it more than I said at the time.",
+    "I don't actually think I'm fine I just say that because it's easier.",
+    "You were one of the most important parts of that time and I don't think you know.",
+    "I meant to apologize for this years ago and I'm sorry I didn't.",
+    "The honest answer to your question is I have no idea what I'm doing.",
+]
+if st.button("📨 Open an Unsent Message", key="unsent_btn"):
+    st.info(f"📩 *\"{random.choice(UNSENT)}\"*")
+    st.caption("(this is a bit, but also write the message. some of them should be sent.)")
+st.markdown("---")
+
+# ===== 86 =====
+st.markdown("**— 86 —**")
+st.subheader("How Old Is Your Soul (Fake Assessment)")
+st.caption("based on vibe and nothing else")
+SOUL_AGES = [
+    ("✨ New Soul (0-100 years)", "Everything is interesting. Chaos is exciting. You're still surprised by how things work. You'll learn."),
+    ("🌿 Young Soul (100-500 years)", "Finding your way. Making choices. Some of them great. Most of them instructive."),
+    ("📖 Middle Soul (500-2000 years)", "Seen some things. Have opinions. Tired in a wise way. Would rather stay in."),
+    ("🌌 Old Soul (2000+ years)", "Very calm. Deeply tired. Has watched civilizations rise and fall. Unsurprised by much. Excellent at naps."),
+    ("🌀 Ancient Soul (timeless)", "Beyond assessment. You've been here before. Many times. You recognize things you've never seen."),
+]
+if st.button("👴 Assess My Soul Age", key="soul_age_btn"):
+    with st.spinner("counting the rings..."):
+        time.sleep(1)
+    label, desc = random.choice(SOUL_AGES)
+    st.markdown(f"### {label}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 87 =====
+st.markdown("**— 87 —**")
+st.subheader("Least Helpful Productivity Advice")
+st.caption("tips that don't work, delivered confidently")
+BAD_PRODUCTIVITY = [
+    "Just do it! (This is the advice. That's all. Just do it. Nobody has elaborated on this in 30 years.)",
+    "Wake up at 5am. If you wake up at 5am and feel terrible, you're building discipline. If you feel good, you're a morning person. Either way, problem solved.",
+    "Make a to-do list. Now make a list of everything on your to-do list. Now prioritize both lists. Make a third list.",
+    "Eat the frog first thing in the morning. (The frog is your least desirable task. Do not eat a frog.)",
+    "Use the Pomodoro technique: 25 minutes of work, 5 minute break. Spend the 5 minutes dreading the next 25 minutes.",
+    "Eliminate distractions. Remove all phones, notifications, and internet access. Now you have no tools to do your job. Perfect.",
+    "Visualize yourself completing the task. Spend 40 minutes visualizing. The task remains. The visualization was vivid.",
+    "Just start! Beginning is the hardest part. (Beginning is not the hardest part. Continuing is the hardest part.)",
+]
+if st.button("💡 Give Me Bad Advice", key="bad_prod_btn"):
+    st.warning(f"⏰ {random.choice(BAD_PRODUCTIVITY)}")
+st.markdown("---")
+
+# ===== 88 =====
+st.markdown("**— 88 —**")
+st.subheader("What Your Walk Says About You")
+st.caption("gait analysis, psychologically")
+WALKS = [
+    "Slightly-too-fast walk: You are perpetually 4 minutes late. You have accepted this. You walk as a form of apology.",
+    "The slow amble: You have nowhere to be. Everyone else is in your way. This is their problem.",
+    "Purposeful-but-no-destination walk: You look like you have a meeting. You do not have a meeting. The confidence is load-bearing.",
+    "Phone-out walk: You're checking something important. The importance decreases every 15 seconds. The phone stays out.",
+    "Looking-at-buildings walk: You're either a tourist or deeply in your feelings. The buildings are not helping either situation.",
+    "One-headphone walk: Sociable enough to be approachable. Busy enough to avoid conversation. A perfect balance.",
+    "Thinking-walk: Something has happened. You're working through it. You've walked three blocks further than you intended.",
+    "Speed-variable walk: Depends on who's in front of you and whether you want to pass them or pretend you don't.",
+]
+if st.button("🚶 Analyze My Walk", key="walk_btn"):
+    st.info(f"👟 {random.choice(WALKS)}")
+st.markdown("---")
+
+# ===== 89 =====
+st.markdown("**— 89 —**")
+st.subheader("The Mood Ring (Text Edition)")
+st.caption("what color is your mood right now")
+MOOD_COLORS = [
+    ("🔵 Deep Blue", "Thoughtful. Introspective. Not sad, just somewhere far away. The ocean has this color sometimes."),
+    ("🟢 Muted Green", "Calm. Grounded. Alive but not dramatically so. A Tuesday in the best possible way."),
+    ("🔴 Bright Red", "Alert. Activated. Something happened or nothing happened and you're annoyed either way."),
+    ("🟡 Yellow", "Genuinely okay. Surprising yourself with it. Don't question it, just be yellow."),
+    ("🟣 Purple", "Creative or dramatic. Possibly both. Something is brewing. It might be excellent."),
+    ("⚫ Black", "Aesthetic choice OR full shutdown mode. Could be either. The mood ring isn't sure."),
+    ("🟠 Orange", "Restless. Energized but unfocused. Everything seems possible in a chaotic way."),
+    ("⚪ White/Clear", "Blank. A fresh nothing. Either very zen or the system is loading. Both are valid."),
+]
+if st.button("💍 Check the Mood Ring", key="mood_ring_btn"):
+    color, desc = random.choice(MOOD_COLORS)
+    st.markdown(f"### {color}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 90 =====
+st.markdown("**— 90 —**")
+st.subheader("Extremely Honest Product Reviews")
+st.caption("what the 3-star reviews are really saying")
+PRODUCT_REVIEWS = [
+    "★★★☆☆ — Pillow: Does what it says. Pillow-shaped. Soft enough. I've had it 4 years. No complaints. I expect nothing from it and it delivers.",
+    "★★☆☆☆ — Salad: I wanted pasta. This was the responsible choice. It was fine. It knew it was a compromise. We both knew.",
+    "★★★★☆ — Headphones: Excellent. One ear stopped working 14 months in. I wear them on the good side. Adapted. Still 4 stars.",
+    "★★★☆☆ — My Own Motivation: Present on some days. Absent on others. No pattern. No refunds. Would not recommend to a friend but I keep using it.",
+    "★☆☆☆☆ — The instructions for assembling this: Exist. Technically. I used them as a general suggestion. The result is structurally fine.",
+    "★★★★★ — Couch: My best relationship. Consistent. Supportive. Available. Never judges. I've given it 5 stars. It deserves 6.",
+    "★★★☆☆ — Wi-Fi: Works until it doesn't. When it doesn't, I stand closer to the router like that helps. Sometimes it helps. 3 stars.",
+]
+if st.button("⭐ Read a Product Review", key="product_review_btn"):
+    st.warning(f"🛒 {random.choice(PRODUCT_REVIEWS)}")
+st.markdown("---")
+
+# ===== 91 =====
+st.markdown("**— 91 —**")
+st.subheader("Cursed Crossword Clue")
+st.caption("the answer makes perfect sense")
+CROSSWORD = [
+    ("That thing you do when you walk into a room and forget why (8 letters)", "THURSDAY"),
+    ("Sound your phone makes at 3am for no reason (5 letters)", "CRIME"),
+    ("What 'working from home' looks like (8 letters)", "EXISTING"),
+    ("The face you make when someone explains something you already know (11 letters)", "NODDING_LIE"),
+    ("Your relationship with the snooze button (9 letters)", "DEPENDENT"),
+    ("What you say to end a call when you didn't hear what they said (6 letters)", "SOUNDS"),
+    ("The tab you've had open for 3 weeks (9 letters)", "INTENTION"),
+    ("What 'I'll do it tomorrow' actually means (9 letters)", "NEXT_WEEK"),
+]
+if st.button("✏️ Give Me a Clue", key="crossword_btn"):
+    clue, answer = random.choice(CROSSWORD)
+    st.markdown(f"**Clue:** {clue}")
+    with st.spinner("thinking hard..."):
+        time.sleep(1.5)
+    st.success(f"**Answer:** {answer}")
+st.markdown("---")
+
+# ===== 92 =====
+st.markdown("**— 92 —**")
+st.subheader("The Honest Job Description")
+st.caption("what the role actually involves")
+JOB_DESCS = [
+    ("Senior Email Manager",
+     "Responsible for sending emails about emails. Attends meetings to discuss the emails. Sends follow-up email recapping the meeting about emails."),
+    ("Junior Everything",
+     "Does tasks too small for senior staff and too large for interns. Learns by doing. Receives feedback by implication. Succeeds quietly."),
+    ("Head of Synergy",
+     "Ensures teams that should talk to each other do talk to each other. Creates slides about the talking. Attends the meeting about the slides."),
+    ("Chief Vibe Officer",
+     "Maintains the general feeling that everything is fine. Adjusts the feeling as needed. Reports to nobody. Answers to everyone."),
+    ("Full Stack Human",
+     "Handles front-end (face, appearance, interactions), back-end (emotions, logistics), and database management (memory, trauma). Always on-call."),
+]
+if st.button("💼 See Job Description", key="jobdesc_btn"):
+    title, desc = random.choice(JOB_DESCS)
+    st.markdown(f"### {title}")
+    st.info(desc)
+st.markdown("---")
+
+# ===== 93 =====
+st.markdown("**— 93 —**")
+st.subheader("Extremely Niche Phobia Generator")
+st.caption("fears that should exist and probably do")
+PHOBIAS = [
+    "Scrollophobia — the fear of reaching the end of your feed and having nothing left to look at.",
+    "Notifitrembia — the anxiety of the notification you haven't opened but know is there.",
+    "Typoregretia — the dread of a typo discovered immediately after hitting send.",
+    "Chargepanic — the existential alarm of 8% battery with no charger in sight.",
+    "Silencophony — the discomfort of a group chat that has suddenly gone very quiet.",
+    "Replydelay — the creeping guilt of a message unanswered for more than 3 days.",
+    "Bufferpause — the specific frustration of video that freezes at a critical moment.",
+    "Voicemailophobia — the refusal to listen to or leave voicemails under any circumstances.",
+    "Openplanangst — the unease of being watched while eating lunch at your desk.",
+    "Recalcuphobia — the panic that follows immediately after taking a wrong turn.",
+]
+if st.button("😱 Diagnose My Phobia", key="phobia_btn"):
+    st.error(f"🔬 {random.choice(PHOBIAS)}")
+st.markdown("---")
+
+# ===== 94 =====
+st.markdown("**— 94 —**")
+st.subheader("The Sandwich Alignment Chart")
+st.caption("the definitive taxonomy")
+SANDWICHES = [
+    "🥖 Hot dog — a sandwich. Two pieces of bread with filling. The bun is hinged. Still bread. Still sandwich.",
+    "🌮 Taco — open-faced sandwich. The fold is structural, not definitional.",
+    "🌯 Burrito — a closed sandwich. The tortilla IS the bread. This is law.",
+    "🍕 Pizza — open-faced sandwich on unleavened bread with toppings. Not legally a sandwich. Morally, unclear.",
+    "🥪 Pop-Tart — a dessert sandwich. Two crusts. Filling. Heat-delivered. Sandwich.",
+    "🍱 Sushi roll — a sandwich from another angle. Rice replaces bread. Filling remains. Philosophical sandwich.",
+    "🥐 Croissant sandwich — the most sophisticated sandwich. No debate. This is agreed upon by all.",
+    "🍔 Burger — peak sandwich. The ur-sandwich. The reference point by which all sandwiches are measured.",
+]
+if st.button("🥪 Settle the Debate", key="sandwich_btn"):
+    st.info(random.choice(SANDWICHES))
+st.markdown("---")
+
+# ===== 95 =====
+st.markdown("**— 95 —**")
+st.subheader("The 'Explain Your Last Text Like a Legal Document'")
+st.caption("terms and conditions for casual conversation")
+LEGAL_TEXTS = [
+    ("'k'",
+     "NOTICE OF ACKNOWLEDGMENT: The undersigned hereby acknowledges receipt of your previous communication. No further action is implied, warranted, or intended by this response. All rights reserved."),
+    ("'haha'",
+     "The issuance of 'haha' constitutes neither admission of amusement nor confirmation of emotional engagement. This response is provided without warranty of genuine entertainment."),
+    ("'sounds good'",
+     "By responding 'sounds good', the party herein does not confirm full comprehension of the proposal, agreement to the terms, or intention to follow through. This is an expression of politeness only."),
+    ("'omw'",
+     "Estimated time of arrival is non-binding and subject to change. 'On my way' may mean departing now, departing soon, or currently locating shoes. No legal obligation is created."),
+    ("'we should hang out sometime'",
+     "This constitutes an expression of goodwill and not a contractual commitment. No date, time, or location has been established. This phrase does not expire but is subject to indefinite deferral."),
+]
+if st.button("⚖️ Legalize My Text", key="legal_btn"):
+    msg, legal = random.choice(LEGAL_TEXTS)
+    st.markdown(f"**Original message:** *\"{msg}\"*")
+    st.info(f"**Legal translation:** {legal}")
+st.markdown("---")
+
+# ===== 96 =====
+st.markdown("**— 96 —**")
+st.subheader("Seasonal Mood Report")
+st.caption("what the weather is doing to people")
+SEASONAL = {
+    "Spring (March-May)": "Optimistic. Making plans. Buying plants. 40% chance the plants survive. Wearing one layer too few. Convinced this year is different.",
+    "Summer (June-Aug)": "Hot. Doing less than planned. Blaming the heat. Eating cold things. Cancelling plans in favor of staying near the fan. No regrets.",
+    "Fall (Sept-Nov)": "Cozy era activated. Buying candles. Wearing a scarf preemptively. Romanticizing everything. Listening to sad music happily.",
+    "Winter (Dec-Feb)": "Hibernation mode. Early nights justified. Soup as a personality. Outdoor activities reconsidered. Main activity: being inside.",
+}
+current_month = datetime.date.today().month
+if current_month in [3, 4, 5]:
+    season = "Spring (March-May)"
+elif current_month in [6, 7, 8]:
+    season = "Summer (June-Aug)"
+elif current_month in [9, 10, 11]:
+    season = "Fall (Sept-Nov)"
+else:
+    season = "Winter (Dec-Feb)"
+st.markdown(f"**Current season:** {season}")
+st.info(SEASONAL[season])
+other_season = st.selectbox("or check another season:", list(SEASONAL.keys()), key="season_select")
+st.caption(SEASONAL[other_season])
+st.markdown("---")
+
+# ===== 97 =====
+st.markdown("**— 97 —**")
+st.subheader("Scientific Name Generator (For Everyday Things)")
+st.caption("latin makes everything sound important")
+SCI_NAMES = [
+    ("The act of opening the fridge for the third time in 10 minutes", "*Frigidus revisitatum* — compulsive cold-box consultation behavior"),
+    ("The pile of clothes that is neither clean nor dirty", "*Vestimenta ambiguus* — the liminal textile formation"),
+    ("Untangling headphone cables", "*Corruptus linearis extractum* — the ritual cable restoration process"),
+    ("Checking your phone immediately after putting it down", "*Deviceus re-consultum* — spontaneous technological re-engagement"),
+    ("Saying 'I'm almost ready' when you haven't started", "*Preparatio simulatum* — the theatrical readiness announcement"),
+    ("The face you make when you're pretending to think in a meeting", "*Consideratum performativus* — the contemplation mime"),
+    ("The specific sound of bubble wrap", "*Bullarum poppitum* — the satisfying pneumatic detonation ritual"),
+    ("Staying up late for no reason", "*Noctis prorogatum voluntarium* — voluntary sleep postponement with no cause"),
+]
+if st.button("🔬 Name My Behavior", key="sciname_btn"):
+    behavior, name = random.choice(SCI_NAMES)
+    st.markdown(f"**Behavior:** {behavior}")
+    st.info(f"**Scientific name:** {name}")
+st.markdown("---")
+
+# ===== 98 =====
+st.markdown("**— 98 —**")
+st.subheader("Alternate Universe Versions of You")
+st.caption("parallel yous, ranked by likelihood")
+ALT_YOUS = [
+    "You, but you replied to that email immediately and everything is slightly different.",
+    "You, but you took that one class you dropped and now you're a marine biologist.",
+    "You, but you went to bed on time for one year straight. Terrifyingly functional.",
+    "You, but you said what you were actually thinking in that meeting in 2019.",
+    "You, but you learned to play guitar and then stopped after three months. Wait, that one exists.",
+    "You, but you live somewhere you've always wanted to live. You haven't called your family in a while.",
+    "You, but you're a morning person. You don't understand the evening people anymore. It's a loss.",
+    "You, but you finished all your drafts. The drafts are published. Some of them did really well.",
+    "You, but you said yes to that thing you said no to. It changed everything. For better. Probably.",
+    "You, but slightly more rested. That's it. That's the only difference. It matters enormously.",
+]
+if st.button("🌀 Find an Alternate Me", key="alt_btn"):
+    st.info(f"🪞 {random.choice(ALT_YOUS)}")
+st.markdown("---")
+
+# ===== 99 =====
+st.markdown("**— 99 —**")
+st.subheader("Receipt for Today")
+st.caption("itemized breakdown of your day")
+if st.button("🧾 Print Today's Receipt", key="receipt_btn"):
+    now = datetime.datetime.now()
+    items = [
+        ("Existing (base fee)", "$0.00"),
+        ("Checking phone first thing", "$3.50"),
+        (f"Coffee or equivalent ({random.choice(['hot', 'iced', 'cold brew', 'whatever was available'])})", f"${random.randint(4,7)}.{random.randint(0,9)}0"),
+        (f"Meetings attended ({random.randint(1,5)})", f"-${random.randint(10,30)}.00 (energy)"),
+        ("Snack (justified)", f"${random.randint(1,4)}.{random.randint(0,9)}0"),
+        ("Procrastination (30-90 min)", "Complimentary"),
+        ("One (1) good idea", "+$25.00 (pending)"),
+        ("Saying 'sounds good' without knowing what it was", "$0.00 (will cost later)"),
+        ("Being generally fine", "No charge"),
+    ]
+    st.markdown(f"**RECEIPT — {now.strftime('%B %d, %Y')}**")
+    st.markdown("```")
+    for item, price in items:
+        st.markdown(f"{item:<45} {price}")
+    st.markdown("---")
+    st.markdown(f"TOTAL: Immeasurable\nTHANK YOU FOR YOUR CONTINUED EXISTENCE")
+    st.markdown("```")
+st.markdown("---")
+
+# ===== 100 =====
+st.markdown("**— 100 —**")
+st.subheader("🎊 Feature #100: The Hall of Fame")
+st.caption("you made it to 100. here's everyone who helped.")
+if st.button("🏛️ Enter the Hall of Fame", key="halloffame_btn"):
+    st.balloons()
+    st.snow()
+    st.success("""
+🏆 DUMB STUFF HALL OF FAME 🏆
+
+Inductees:
+
+🥇 The Button That Does Nothing — for doing nothing, consistently, every time, without complaint.
+
+🥇 The Clicker Game — for teaching us that meaning is assigned, not inherent.
+
+🥇 The Bad Decision Hotline — for always picking up, even at 2am.
+
+🥇 The Final Button (now the second-to-last button) — for escalating gracefully.
+
+🥇 The Procrastination Stage Checker — for seeing us. Really seeing us.
+
+🥇 You — for scrolling through 100 features on a website called Dumb Stuff.
+        That's either extremely impressive or a sign that you need a snack.
+        We think both.
+
+        Thank you for being here. None of this mattered.
+        All of it was worth it.
+        Go drink some water.
+    """)
+
+st.markdown("---")
+st.markdown(
+    "<div style='text-align:center;font-family:monospace;font-size:11px;color:#bbb;letter-spacing:2px;'>"
+    "© DUMB STUFF · 100 FEATURES · ALL RIGHTS RESERVED · NONE OF THIS MATTERS · GO OUTSIDE"
+    "</div>",
+    unsafe_allow_html=True
+)
