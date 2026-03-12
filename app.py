@@ -4123,11 +4123,788 @@ That's a you thing to have done.
 ✨
     """)
 
+# ============ THE 6-HOUR PUZZLE (Feature 201) ============
+
+st.markdown("---")
+st.markdown("**— 201 —**")
+st.subheader("🔒 The Puzzle")
+st.caption("*for now* was never just two words")
+
+# Session state for puzzle
+puzzle_defaults = {
+    "puzzle_started": False,
+    "puzzle_start_time": None,
+    "puzzle_stage": 0,       # 0=locked, 1-12=stages, 13=complete
+    "stage_answers": {},     # stage_num -> bool (solved)
+    "stage_start_times": {}, # stage_num -> timestamp when unlocked
+    "hint_counts": {},       # stage_num -> hints used
+    "cipher_key": None,
+    "morse_verified": False,
+    "anagram_verified": False,
+    "coord_verified": False,
+    "binary_verified": False,
+    "story_choices": [],
+    "rearrange_verified": False,
+    "memory_sequence": [],
+    "memory_input": [],
+    "memory_verified": False,
+    "countdown_done": False,
+    "final_unlocked": False,
+    "puzzle_end_time": None,
+}
+for k, v in puzzle_defaults.items():
+    if k not in st.session_state:
+        st.session_state[k] = v
+
+# ---- HELPER ----
+def stage_elapsed(stage_num):
+    t = st.session_state.stage_start_times.get(stage_num)
+    if t is None:
+        return 0
+    return int(time.time() - t)
+
+def unlock_stage(n):
+    if n not in st.session_state.stage_start_times:
+        st.session_state.stage_start_times[n] = time.time()
+    st.session_state.puzzle_stage = n
+
+def total_elapsed():
+    if st.session_state.puzzle_start_time is None:
+        return 0
+    return int(time.time() - st.session_state.puzzle_start_time)
+
+def fmt_time(secs):
+    h = secs // 3600
+    m = (secs % 3600) // 60
+    s = secs % 60
+    if h > 0:
+        return f"{h}h {m}m {s}s"
+    elif m > 0:
+        return f"{m}m {s}s"
+    return f"{s}s"
+
+# ---- ENTRY POINT ----
+if not st.session_state.puzzle_started:
+    st.markdown("""
+> *You pressed it.*  
+> *The 'for now' button.*  
+> *Nobody told you what 'for now' meant.*  
+> *Now you know.*  
+>  
+> *There are 12 stages.*  
+> *Each one takes time.*  
+> *Some will take patience. Some will take thought.*  
+> *One will require you to wait.*  
+>  
+> *At the end, something waits.*  
+> *We won't tell you what.*  
+> *That's the point.*  
+>  
+> **Estimated total time: 6 hours.**  
+> **Good luck. You'll need most of it.**
+""")
+    if st.button("🔓 BEGIN THE PUZZLE", key="puzzle_begin"):
+        st.session_state.puzzle_started = True
+        st.session_state.puzzle_start_time = time.time()
+        st.session_state.cipher_key = random.randint(1, 12)
+        st.session_state.memory_sequence = random.choices(["🔴","🟡","🟢","🔵","🟣"], k=7)
+        unlock_stage(1)
+        st.rerun()
+
+else:
+    stage = st.session_state.puzzle_stage
+    elapsed = total_elapsed()
+
+    # Progress bar
+    stages_done = sum(1 for i in range(1,13) if st.session_state.stage_answers.get(i, False))
+    st.progress(stages_done / 12)
+    st.caption(f"Stage {min(stage,12)}/12 · Total time: {fmt_time(elapsed)} · {stages_done}/12 complete")
+    st.markdown("---")
+
+    # ================================================================
+    # STAGE 1 — THE CAESAR CIPHER
+    # ================================================================
+    if stage >= 1:
+        st.markdown("### 🔐 Stage 1 — The Cipher")
+        if not st.session_state.stage_answers.get(1):
+            k = st.session_state.cipher_key
+            # Encode "DUMBSTUFF" with Caesar
+            plaintext = "WELLDONEYOUFOUNDIT"
+            encoded = ""
+            for c in plaintext:
+                if c.isalpha():
+                    encoded += chr((ord(c) - ord('A') + k) % 26 + ord('A'))
+                else:
+                    encoded += c
+            st.markdown(f"""
+A message has been encoded. The key is hidden in plain sight.
+
+**Encoded message:**
+```
+{encoded}
+```
+
+*The key is the number of letters in the first word of this website's name.*
+
+Decode it. Enter the decoded message (all caps, no spaces).
+""")
+            hints_used = st.session_state.hint_counts.get(1, 0)
+            ans1 = st.text_input("Decoded message:", key="stage1_input").strip().upper()
+            col1, col2 = st.columns([3,1])
+            with col1:
+                if st.button("✅ Submit", key="stage1_submit"):
+                    if ans1 == plaintext:
+                        st.session_state.stage_answers[1] = True
+                        unlock_stage(2)
+                        st.success("✅ Correct. The message reads: WELLDONEYOUFOUNDIT")
+                        st.rerun()
+                    else:
+                        st.error("Incorrect. Try again.")
+            with col2:
+                if st.button("💡 Hint", key="stage1_hint"):
+                    st.session_state.hint_counts[1] = hints_used + 1
+                    st.rerun()
+            h = st.session_state.hint_counts.get(1, 0)
+            if h >= 1:
+                st.caption(f"Hint 1: 'DUMB' has 4 letters. The key shifts each letter back by that many.")
+            if h >= 2:
+                st.caption(f"Hint 2: Caesar cipher. Shift each letter back by {k}. A→{chr((0 - k) % 26 + ord('A'))}, B→{chr((1 - k) % 26 + ord('A'))}")
+        else:
+            st.success("✅ Stage 1 Complete — *WELLDONEYOUFOUNDIT*")
+
+    # ================================================================
+    # STAGE 2 — MORSE CODE
+    # ================================================================
+    if stage >= 2:
+        st.markdown("### 📡 Stage 2 — Morse Code")
+        if not st.session_state.stage_answers.get(2):
+            morse_answer = "PATIENCE"
+            morse_encoded = {
+                'P':'.--.', 'A':'.-', 'T':'-', 'I':'..', 'E':'.', 'N':'-.', 'C':'-.-.', 'E':'.'
+            }
+            morse_str = ".--.  .-  -  ..  .  -.  -.-.  ."
+            st.markdown(f"""
+The signal came through. Decode it.
+
+```
+{morse_str}
+```
+
+*(Spaces between letters, double space between words)*
+
+What does it say?
+""")
+            ans2 = st.text_input("Decoded word:", key="stage2_input").strip().upper()
+            col1, col2 = st.columns([3,1])
+            with col1:
+                if st.button("✅ Submit", key="stage2_submit"):
+                    if ans2 == morse_answer:
+                        st.session_state.stage_answers[2] = True
+                        unlock_stage(3)
+                        st.success("✅ Correct. PATIENCE. Remember this word.")
+                        st.rerun()
+                    else:
+                        st.error("Not quite. The dots and dashes don't lie.")
+            with col2:
+                if st.button("💡 Hint", key="stage2_hint"):
+                    st.session_state.hint_counts[2] = st.session_state.hint_counts.get(2,0) + 1
+                    st.rerun()
+            h = st.session_state.hint_counts.get(2, 0)
+            if h >= 1:
+                st.caption("Hint 1: It's a single 8-letter word. A virtue. One you'll need.")
+            if h >= 2:
+                st.caption("Hint 2: . = E, - = T, .- = A, -. = N, .. = I, .-. = R, -.-. = C, .--. = P")
+        else:
+            st.success("✅ Stage 2 Complete — *PATIENCE*")
+
+    # ================================================================
+    # STAGE 3 — THE WAIT (mandatory 10 minutes)
+    # ================================================================
+    if stage >= 3:
+        st.markdown("### ⏳ Stage 3 — The Wait")
+        if not st.session_state.stage_answers.get(3):
+            unlock_time = st.session_state.stage_start_times.get(3, time.time())
+            wait_seconds = 600  # 10 minutes
+            elapsed_wait = int(time.time() - unlock_time)
+            remaining = max(0, wait_seconds - elapsed_wait)
+
+            st.markdown("""
+Stage 2 told you a word. Stage 3 *is* that word.
+
+**You must wait 10 minutes.**
+
+No tricks. No shortcuts. No buttons to press.
+The puzzle said patience. The puzzle meant it.
+
+Go make a drink. Stretch. Look at something that isn't a screen.
+Come back in 10 minutes.
+""")
+            if remaining > 0:
+                st.info(f"⏱️ Time remaining: **{fmt_time(remaining)}**")
+                st.caption("This is not a bug. This is Stage 3.")
+                st.button("🔄 Check Time", key="stage3_check")
+            else:
+                st.success("✅ 10 minutes elapsed. You waited. You may proceed.")
+                if st.button("➡️ Continue to Stage 4", key="stage3_continue"):
+                    st.session_state.stage_answers[3] = True
+                    unlock_stage(4)
+                    st.rerun()
+        else:
+            st.success("✅ Stage 3 Complete — *You waited.*")
+
+    # ================================================================
+    # STAGE 4 — THE ANAGRAM
+    # ================================================================
+    if stage >= 4:
+        st.markdown("### 🔤 Stage 4 — The Anagram")
+        if not st.session_state.stage_answers.get(4):
+            st.markdown("""
+Rearrange all of the following letters into two words (a common phrase):
+
+```
+E  N  T  I  S  A  M  E  H  T  H  G  I  R
+```
+
+*(14 letters. Two words. A phrase you've heard before.)*
+""")
+            ans4 = st.text_input("Two-word phrase (no spaces needed):", key="stage4_input").strip().upper().replace(" ","")
+            col1, col2 = st.columns([3,1])
+            with col1:
+                if st.button("✅ Submit", key="stage4_submit"):
+                    accepted = ["RIGHTTHESAME","THESAMERIGHT","SAMERIGHTTHE"]
+                    if ans4 in accepted or ans4 == "ITSTHESAME" or ans4 == "RIGHTATIME" or sorted(ans4) == sorted("ITSTHESAMERIGHT"[:14]):
+                        st.session_state.stage_answers[4] = True
+                        unlock_stage(5)
+                        st.success("✅ THE SAME RIGHT — or RIGHT THE SAME. The letters confirm it.")
+                        st.rerun()
+                    elif sorted(ans4) == sorted("ENITSAMETGHIR".replace(" ","")):
+                        st.session_state.stage_answers[4] = True
+                        unlock_stage(5)
+                        st.success("✅ Correct!")
+                        st.rerun()
+                    else:
+                        # Check if they got a valid anagram
+                        letters_given = sorted("ENTISAMETGHIR")
+                        if sorted(ans4) == letters_given:
+                            st.session_state.stage_answers[4] = True
+                            unlock_stage(5)
+                            st.success("✅ Correct! Well done.")
+                            st.rerun()
+                        else:
+                            st.error("Those letters don't quite work. Keep rearranging.")
+            with col2:
+                if st.button("💡 Hint", key="stage4_hint"):
+                    st.session_state.hint_counts[4] = st.session_state.hint_counts.get(4,0) + 1
+                    st.rerun()
+            h = st.session_state.hint_counts.get(4, 0)
+            if h >= 1:
+                st.caption("Hint 1: The phrase relates to something being correct or accurate.")
+            if h >= 2:
+                st.caption("Hint 2: One word is THE. Another starts with R. Think: 'that's __ __'.")
+            if h >= 3:
+                st.caption("Hint 3: RIGHT. THERE. Rearrange: RIGHT THERE IS THE ANSWER = RIGHT THERE.")
+        else:
+            st.success("✅ Stage 4 Complete — *Anagram solved*")
+
+    # ================================================================
+    # STAGE 5 — BINARY
+    # ================================================================
+    if stage >= 5:
+        st.markdown("### 💻 Stage 5 — Binary")
+        if not st.session_state.stage_answers.get(5):
+            # Binary for "KEEP GOING"
+            binary_answer = "KEEPGOING"
+            binary_str = "01001011 01000101 01000101 01010000 01000111 01001111 01001001 01001110 01000111"
+            st.markdown(f"""
+The machine speaks in ones and zeros.
+
+```
+{binary_str}
+```
+
+Translate each 8-bit chunk to ASCII. What does it say?
+*(No spaces in your answer)*
+""")
+            ans5 = st.text_input("Translation:", key="stage5_input").strip().upper().replace(" ","")
+            col1, col2 = st.columns([3,1])
+            with col1:
+                if st.button("✅ Submit", key="stage5_submit"):
+                    if ans5 == binary_answer:
+                        st.session_state.stage_answers[5] = True
+                        unlock_stage(6)
+                        st.success("✅ KEEP GOING. The machine agrees.")
+                        st.rerun()
+                    else:
+                        st.error("The binary disagrees. Try again.")
+            with col2:
+                if st.button("💡 Hint", key="stage5_hint"):
+                    st.session_state.hint_counts[5] = st.session_state.hint_counts.get(5,0) + 1
+                    st.rerun()
+            h = st.session_state.hint_counts.get(5, 0)
+            if h >= 1:
+                st.caption("Hint 1: Each group of 8 bits is one letter. 01001011 = 75 in decimal = 'K' in ASCII.")
+            if h >= 2:
+                st.caption("Hint 2: The message is two words of encouragement. You're doing fine.")
+            if h >= 3:
+                st.caption("Hint 3: K=75, E=69, E=69, P=80, G=71, O=79, I=73, N=78, G=71")
+        else:
+            st.success("✅ Stage 5 Complete — *KEEP GOING*")
+
+    # ================================================================
+    # STAGE 6 — THE STORY CHOICE (branching, all paths valid)
+    # ================================================================
+    if stage >= 6:
+        st.markdown("### 📖 Stage 6 — The Story")
+        if not st.session_state.stage_answers.get(6):
+            st.markdown("""
+You find yourself at a crossroads.
+
+*Three paths lead forward.*
+*All of them are correct.*
+*The puzzle is not testing your choice — it's testing whether you'll commit to one.*
+
+**Which path do you take?**
+""")
+            col1, col2, col3 = st.columns(3)
+            chosen = None
+            with col1:
+                if st.button("🌲 The Forest\n\n*quiet, dark, known*", key="path_forest"):
+                    chosen = "forest"
+            with col2:
+                if st.button("🏔️ The Mountain\n\n*hard, high, clear*", key="path_mountain"):
+                    chosen = "mountain"
+            with col3:
+                if st.button("🌊 The Sea\n\n*deep, open, unknown*", key="path_sea"):
+                    chosen = "sea"
+
+            if chosen:
+                st.session_state.story_choices.append(chosen)
+                st.session_state.stage_answers[6] = True
+                unlock_stage(7)
+                descriptions = {
+                    "forest": "You chose the forest. You've been here before. The path is familiar even in the dark.",
+                    "mountain": "You chose the mountain. The climb is worth it. You knew this before you started.",
+                    "sea": "You chose the sea. You don't know what's down there. That was always the appeal.",
+                }
+                st.success(f"✅ {descriptions[chosen]}")
+                st.rerun()
+        else:
+            path = st.session_state.story_choices[-1] if st.session_state.story_choices else "unknown"
+            st.success(f"✅ Stage 6 Complete — *You chose the {path}*")
+
+    # ================================================================
+    # STAGE 7 — THE MEMORY GAME
+    # ================================================================
+    if stage >= 7:
+        st.markdown("### 🧠 Stage 7 — Memory")
+        if not st.session_state.stage_answers.get(7):
+            seq = st.session_state.memory_sequence
+            if not st.session_state.memory_verified:
+                st.markdown("""
+Memorize the sequence below. You have 30 seconds.
+Then it will disappear and you must reproduce it.
+""")
+                unlock_time = st.session_state.stage_start_times.get(7, time.time())
+                elapsed_mem = int(time.time() - unlock_time)
+
+                if elapsed_mem < 30:
+                    remaining_mem = 30 - elapsed_mem
+                    st.markdown(f"**Memorize this:** {'  '.join(seq)}")
+                    st.info(f"⏱️ Visible for: {remaining_mem}s")
+                    st.button("🔄 Refresh", key="mem_refresh")
+                else:
+                    st.markdown("*The sequence is gone. Reproduce it from memory.*")
+                    cols = st.columns(7)
+                    options = ["🔴","🟡","🟢","🔵","🟣"]
+                    if len(st.session_state.memory_input) < 7:
+                        st.markdown("**Click the symbols in order:**")
+                        emoji_cols = st.columns(5)
+                        for i, opt in enumerate(options):
+                            with emoji_cols[i]:
+                                if st.button(opt, key=f"mem_input_{i}_{len(st.session_state.memory_input)}"):
+                                    st.session_state.memory_input.append(opt)
+                                    st.rerun()
+                        st.markdown(f"**Your sequence so far:** {'  '.join(st.session_state.memory_input) if st.session_state.memory_input else '(empty)'}")
+                        if st.session_state.memory_input:
+                            if st.button("🗑️ Clear", key="mem_clear"):
+                                st.session_state.memory_input = []
+                                st.rerun()
+                    else:
+                        st.markdown(f"**Your sequence:** {'  '.join(st.session_state.memory_input)}")
+                        if st.button("✅ Submit Sequence", key="mem_submit"):
+                            if st.session_state.memory_input == seq:
+                                st.session_state.stage_answers[7] = True
+                                st.session_state.memory_verified = True
+                                unlock_stage(8)
+                                st.success("✅ Perfect memory. Every symbol. In order.")
+                                st.rerun()
+                            else:
+                                st.error(f"Not quite. The sequence was: {'  '.join(seq)}")
+                                st.session_state.memory_input = []
+                                # Reset timer for another attempt
+                                st.session_state.stage_start_times[7] = time.time()
+                                st.rerun()
+            else:
+                st.success("✅ Memory verified.")
+        else:
+            st.success("✅ Stage 7 Complete — *Memory intact*")
+
+    # ================================================================
+    # STAGE 8 — THE RIDDLE CHAIN
+    # ================================================================
+    if stage >= 8:
+        st.markdown("### 🧩 Stage 8 — The Riddle Chain")
+        if not st.session_state.stage_answers.get(8):
+            riddles_chain = [
+                ("I have no voice, yet I speak to you. I tell of things in the world people do. I have leaves, but I'm not a tree. I have a spine, but I'm not alive. What am I?", "BOOK"),
+                ("The more you take, the more you leave behind. What am I?", "FOOTSTEPS"),
+                ("I'm light as a feather, but even the strongest person can't hold me for more than a few minutes. What am I?", "BREATH"),
+            ]
+            if "riddle_chain_idx" not in st.session_state:
+                st.session_state.riddle_chain_idx = 0
+            idx = st.session_state.riddle_chain_idx
+            if idx < len(riddles_chain):
+                q, a = riddles_chain[idx]
+                st.markdown(f"**Riddle {idx+1} of {len(riddles_chain)}:**\n\n*{q}*")
+                ans8 = st.text_input("Answer:", key=f"riddle_{idx}").strip().upper().replace(" ","")
+                if st.button("✅ Submit", key=f"riddle_submit_{idx}"):
+                    if ans8 == a:
+                        st.session_state.riddle_chain_idx += 1
+                        if st.session_state.riddle_chain_idx >= len(riddles_chain):
+                            st.session_state.stage_answers[8] = True
+                            unlock_stage(9)
+                            st.success("✅ All three riddles solved. You see clearly.")
+                        else:
+                            st.success(f"✅ Correct! Next riddle loading...")
+                        st.rerun()
+                    else:
+                        st.error("Not the answer. Think differently.")
+                col1, col2 = st.columns([3,1])
+                with col2:
+                    if st.button("💡 Hint", key=f"riddle_hint_{idx}"):
+                        st.session_state.hint_counts[f"r{idx}"] = st.session_state.hint_counts.get(f"r{idx}",0) + 1
+                        st.rerun()
+                h = st.session_state.hint_counts.get(f"r{idx}", 0)
+                chain_hints = [
+                    ["Hint: You find it in a library.", "Hint: It has chapters. You read it."],
+                    ["Hint: They're on the ground. You make them.", "Hint: Think about walking."],
+                    ["Hint: You do it every few seconds.", "Hint: You're doing it right now."],
+                ]
+                for hi, hint_text in enumerate(chain_hints[idx]):
+                    if h > hi:
+                        st.caption(hint_text)
+            else:
+                st.success("✅ All riddles complete.")
+        else:
+            st.success("✅ Stage 8 Complete — *Three riddles answered*")
+
+    # ================================================================
+    # STAGE 9 — THE LONG WAIT (1 hour)
+    # ================================================================
+    if stage >= 9:
+        st.markdown("### ⌛ Stage 9 — The Long Wait")
+        if not st.session_state.stage_answers.get(9):
+            unlock_time = st.session_state.stage_start_times.get(9, time.time())
+            wait_seconds = 3600  # 1 hour
+            elapsed_wait = int(time.time() - unlock_time)
+            remaining = max(0, wait_seconds - elapsed_wait)
+            pct = min(1.0, elapsed_wait / wait_seconds)
+
+            st.markdown("""
+Stage 3 was a warm-up.
+
+**This one is one hour.**
+
+The puzzle isn't trying to be cruel.
+It's trying to ask: *how much do you want to see the end?*
+
+You can close the tab. Come back. The timer persists.
+Or you can stay. That's allowed too.
+Bring snacks.
+""")
+            if remaining > 0:
+                st.progress(pct)
+                st.info(f"⏱️ Time remaining: **{fmt_time(remaining)}**")
+                st.caption(f"Time elapsed: {fmt_time(elapsed_wait)} / 1 hour")
+                st.button("🔄 Check Progress", key="stage9_check")
+            else:
+                st.progress(1.0)
+                st.success("✅ One hour elapsed. You came back. That means something.")
+                if st.button("➡️ Continue to Stage 10", key="stage9_continue"):
+                    st.session_state.stage_answers[9] = True
+                    unlock_stage(10)
+                    st.rerun()
+        else:
+            st.success("✅ Stage 9 Complete — *One hour. You waited.*")
+
+    # ================================================================
+    # STAGE 10 — THE WORD UNSCRAMBLE GAUNTLET
+    # ================================================================
+    if stage >= 10:
+        st.markdown("### 🔡 Stage 10 — The Gauntlet")
+        if not st.session_state.stage_answers.get(10):
+            st.markdown("Unscramble all five words. They form a message when read in order.")
+            words_scrambled = [
+                ("OUYE", "YOUE", "RYEA"),      # YOU
+                ("RAMSTLO", "SLMARTO", "TSOLARM"), # ALMOST
+                ("EETRH", "ETRHE", "THERE"),    # THERE
+                ("EOPK", "PEEK", "EPOK"),        # KEEP
+                ("GONIG", "GINOG", "GOING"),     # GOING
+            ]
+            answers_10 = ["YOU", "ALMOST", "THERE", "KEEP", "GOING"]
+            scrambled_display = ["OUYE", "TSOLRAM", "ETREH", "PEEK", "GONIG"]
+
+            if "gauntlet_answers" not in st.session_state:
+                st.session_state.gauntlet_answers = [""] * 5
+            if "gauntlet_done" not in st.session_state:
+                st.session_state.gauntlet_done = [False] * 5
+
+            all_done = True
+            for i, (scramble, correct) in enumerate(zip(scrambled_display, answers_10)):
+                col1, col2, col3 = st.columns([2, 3, 1])
+                with col1:
+                    st.markdown(f"**`{scramble}`**")
+                with col2:
+                    if not st.session_state.gauntlet_done[i]:
+                        val = st.text_input(f"Word {i+1}:", key=f"gauntlet_{i}").strip().upper()
+                        if st.button("✓", key=f"gauntlet_submit_{i}"):
+                            if val == correct:
+                                st.session_state.gauntlet_done[i] = True
+                                st.rerun()
+                            else:
+                                st.error(f"Not quite.")
+                    else:
+                        st.markdown(f"✅ **{correct}**")
+                if not st.session_state.gauntlet_done[i]:
+                    all_done = False
+
+            if all_done:
+                msg = " ".join(answers_10)
+                st.success(f"✅ '{msg}' — The gauntlet yields.")
+                if st.button("➡️ Stage 11", key="gauntlet_next"):
+                    st.session_state.stage_answers[10] = True
+                    unlock_stage(11)
+                    st.rerun()
+        else:
+            st.success("✅ Stage 10 Complete — *YOU ALMOST THERE KEEP GOING*")
+
+    # ================================================================
+    # STAGE 11 — THE FINAL WAIT (4 hours — the big one)
+    # ================================================================
+    if stage >= 11:
+        st.markdown("### 🕰️ Stage 11 — The Commitment")
+        if not st.session_state.stage_answers.get(11):
+            unlock_time = st.session_state.stage_start_times.get(11, time.time())
+            wait_seconds = 14400  # 4 hours
+            elapsed_wait = int(time.time() - unlock_time)
+            remaining = max(0, wait_seconds - elapsed_wait)
+            pct = min(1.0, elapsed_wait / wait_seconds)
+
+            st.markdown("""
+You've made it to Stage 11.
+
+You've decoded ciphers.
+You've translated morse code.
+You've waited ten minutes.
+You've solved riddles.
+You've translated binary.
+You've memorized sequences.
+You've unscrambled five words.
+You've waited one hour.
+
+**Now you wait four hours.**
+
+This is where the 6 hours comes from.
+10 minutes + 1 hour + 4 hours = the price of the ending.
+
+The ending exists.
+It's real.
+It's worth it.
+
+*(We think. Honestly, you'll decide.)*
+
+Go live your life for 4 hours.
+Come back.
+Stage 12 will be here.
+""")
+            if remaining > 0:
+                st.progress(pct)
+                hrs_remaining = remaining // 3600
+                mins_remaining = (remaining % 3600) // 60
+                st.info(f"⏱️ Time remaining: **{fmt_time(remaining)}**")
+                st.caption(f"Elapsed: {fmt_time(elapsed_wait)} / 4 hours · {int(pct*100)}% complete")
+                st.button("🔄 Check Progress", key="stage11_check")
+            else:
+                st.progress(1.0)
+                st.success("✅ Four hours. You came back. The puzzle salutes you.")
+                if st.button("➡️ THE FINAL STAGE", key="stage11_continue"):
+                    st.session_state.stage_answers[11] = True
+                    unlock_stage(12)
+                    st.rerun()
+        else:
+            st.success("✅ Stage 11 Complete — *Four hours. Done.*")
+
+    # ================================================================
+    # STAGE 12 — THE FINAL PUZZLE
+    # ================================================================
+    if stage >= 12:
+        st.markdown("### 🏁 Stage 12 — The End")
+        if not st.session_state.stage_answers.get(12):
+            st.markdown("""
+This is the last one.
+
+Throughout this puzzle, the stages have given you words.
+In order, the answers were:
+
+*Stage 1, Stage 2, Stage 5, Stage 10...*
+
+**What is the message hidden across all the stages?**
+
+Take the key words from each stage. In order.
+They spell something out.
+Write it below.
+""")
+            # Hidden message: WELL DONE YOU FOUND IT · PATIENCE · KEEP GOING · YOU ALMOST THERE KEEP GOING
+            # Key words in sequence: WELLDONEYOUFOUNDIT, PATIENCE, (wait), (anagram), KEEPGOING, (path), (memory), (riddles), (wait), YOUALMOSTTHEREKEEPGOING, (wait), ???
+            # Final answer: THE END IS YOU
+            st.markdown("""
+*Hint: The puzzle has been talking to you the whole time.*
+*The message was never about the puzzle.*
+*It was about the person doing it.*
+
+**What have you been, for the last 6 hours?**
+*(One word. The most accurate description of anyone who completes this.)*
+""")
+            ans12 = st.text_input("One word:", key="stage12_input").strip().upper()
+            col1, col2 = st.columns([3,1])
+            with col1:
+                if st.button("✅ Final Submission", key="stage12_submit"):
+                    accepted_finals = [
+                        "PATIENT", "PERSISTENT", "DEDICATED", "DETERMINED",
+                        "STUBBORN", "COMMITTED", "RELENTLESS", "FOOLISH",
+                        "BORED", "CURIOUS", "OBSESSED", "RIDICULOUS",
+                        "INSANE", "CRAZY", "AMAZING", "INCREDIBLE",
+                        "WORTHY", "DONE", "FINISHED", "TIRED",
+                        "AWAKE", "HERE", "PRESENT", "ALIVE",
+                        "ME", "HUMAN", "REAL", "STILL",
+                    ]
+                    if ans12 in accepted_finals or len(ans12) >= 3:
+                        st.session_state.stage_answers[12] = True
+                        st.session_state.puzzle_end_time = time.time()
+                        st.session_state.final_unlocked = True
+                        st.rerun()
+                    else:
+                        st.error("One word. Any honest one.")
+            with col2:
+                if st.button("💡 Hint", key="stage12_hint"):
+                    st.session_state.hint_counts[12] = st.session_state.hint_counts.get(12,0) + 1
+                    st.rerun()
+            h = st.session_state.hint_counts.get(12, 0)
+            if h >= 1:
+                st.caption("Hint: There's no wrong answer. It just has to be true.")
+            if h >= 2:
+                st.caption("Hint: What does someone who completes a 6-hour puzzle prove about themselves?")
+        else:
+            st.success("✅ Stage 12 Complete.")
+
+    # ================================================================
+    # THE REWARD
+    # ================================================================
+    if st.session_state.final_unlocked and all(st.session_state.stage_answers.get(i) for i in range(1,13)):
+        total_time = total_elapsed()
+        final_word = st.session_state.stage_answers.get(12, "")
+
+        st.markdown("---")
+        st.balloons()
+        st.snow()
+
+        st.markdown(f"""
+# 🏆 YOU DID IT
+
+**Total time: {fmt_time(total_time)}**
+
+---
+
+### The Secret
+
+Here it is. The thing at the end of 6 hours on a website called Dumb Stuff.
+
+There is no treasure.
+There is no prize.
+There is no secret society.
+There is no code that unlocks something else.
+
+**The reward is this:**
+
+You spent {fmt_time(total_time)} on a puzzle because someone told you it would take 6 hours and you said *fine, let's go.*
+
+You decoded ciphers.
+You translated dots and dashes.
+You waited. Twice. For a long time.
+You solved riddles.
+You translated binary.
+You chose a path.
+You remembered a sequence.
+You unscrambled five words.
+You waited *four hours.*
+You answered one final question with the word: **{st.session_state.stage_answers.get(12, "something true")}**
+
+That word was correct.
+Whatever it was.
+Because you *were* here.
+You *are* still here.
+
+---
+
+### The Actual Secret
+
+The puzzle was built on a website called Dumb Stuff.
+The website has 200 features.
+None of them matter.
+All of them were worth building.
+
+You are the only person who has ever completed this.
+*(Probably. We don't track analytics.)*
+
+The puzzle was a mirror.
+The 6 hours was a question.
+The question was: **are you someone who finishes things?**
+
+The answer, as of {fmt_time(total_time)} ago, is:
+
+# **YES.**
+
+---
+
+*Screenshot this. You earned it.*
+*Or don't. You'll remember it anyway.*
+
+✨ **DUMB STUFF PUZZLE — COMPLETE** ✨
+""")
+
+        hints_total = sum(st.session_state.hint_counts.get(k, 0) for k in st.session_state.hint_counts)
+        path_chosen = st.session_state.story_choices[-1] if st.session_state.story_choices else "unknown"
+
+        st.info(f"""
+**Your Stats:**
+- Total time: {fmt_time(total_time)}
+- Hints used: {hints_total}
+- Path chosen: the {path_chosen}
+- Final word: {st.session_state.stage_answers.get(12, "—")}
+- Stages completed: 12/12
+""")
+
+        if st.button("🔄 Reset Puzzle (start over)", key="puzzle_reset"):
+            for key in list(puzzle_defaults.keys()):
+                if key in st.session_state:
+                    del st.session_state[key]
+            st.rerun()
+
 # ============ FINAL FOOTER ============
 st.markdown("---")
 st.markdown(
     "<div style='text-align:center;font-family:monospace;font-size:11px;color:#bbb;letter-spacing:2px;'>"
-    "© DUMB STUFF · 200 FEATURES · ALL RIGHTS RESERVED · NONE OF THIS MATTERS · GO OUTSIDE · DRINK WATER"
+    "© DUMB STUFF · 201 FEATURES · ALL RIGHTS RESERVED · NONE OF THIS MATTERS · GO OUTSIDE · DRINK WATER"
     "</div>",
     unsafe_allow_html=True
 )
