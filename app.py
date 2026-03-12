@@ -5,6 +5,11 @@ import datetime
 
 st.set_page_config(page_title="DUMB STUFF", page_icon="🗑️", layout="centered")
 
+# Reset all session state on every page load
+for key in list(st.session_state.keys()):
+    del st.session_state[key]
+
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
@@ -4248,7 +4253,6 @@ A message has been encoded. The key is hidden in plain sight.
 
 Decode it. Enter the decoded message (all caps, no spaces).
 """)
-            hints_used = st.session_state.hint_counts.get(1, 0)
             ans1 = st.text_input("Decoded message:", key="stage1_input").strip().upper()
             col1, col2 = st.columns([3,1])
             with col1:
@@ -4260,15 +4264,6 @@ Decode it. Enter the decoded message (all caps, no spaces).
                         st.rerun()
                     else:
                         st.error("Incorrect. Try again.")
-            with col2:
-                if st.button("💡 Hint", key="stage1_hint"):
-                    st.session_state.hint_counts[1] = hints_used + 1
-                    st.rerun()
-            h = st.session_state.hint_counts.get(1, 0)
-            if h >= 1:
-                st.caption(f"Hint 1: 'DUMB' has 4 letters. The key shifts each letter back by that many.")
-            if h >= 2:
-                st.caption(f"Hint 2: Caesar cipher. Shift each letter back by {k}. A→{chr((0 - k) % 26 + ord('A'))}, B→{chr((1 - k) % 26 + ord('A'))}")
         else:
             st.success("✅ Stage 1 Complete — *WELLDONEYOUFOUNDIT*")
 
@@ -4305,15 +4300,6 @@ What does it say?
                         st.rerun()
                     else:
                         st.error("Not quite. The dots and dashes don't lie.")
-            with col2:
-                if st.button("💡 Hint", key="stage2_hint"):
-                    st.session_state.hint_counts[2] = st.session_state.hint_counts.get(2,0) + 1
-                    st.rerun()
-            h = st.session_state.hint_counts.get(2, 0)
-            if h >= 1:
-                st.caption("Hint 1: It's a single 8-letter word. A virtue. One you'll need.")
-            if h >= 2:
-                st.caption("Hint 2: . = E, - = T, .- = A, -. = N, .. = I, .-. = R, -.-. = C, .--. = P")
         else:
             st.success("✅ Stage 2 Complete — *PATIENCE*")
 
@@ -4392,17 +4378,6 @@ E  N  T  I  S  A  M  E  H  T  H  G  I  R
                             st.rerun()
                         else:
                             st.error("Those letters don't quite work. Keep rearranging.")
-            with col2:
-                if st.button("💡 Hint", key="stage4_hint"):
-                    st.session_state.hint_counts[4] = st.session_state.hint_counts.get(4,0) + 1
-                    st.rerun()
-            h = st.session_state.hint_counts.get(4, 0)
-            if h >= 1:
-                st.caption("Hint 1: The phrase relates to something being correct or accurate.")
-            if h >= 2:
-                st.caption("Hint 2: One word is THE. Another starts with R. Think: 'that's __ __'.")
-            if h >= 3:
-                st.caption("Hint 3: RIGHT. THERE. Rearrange: RIGHT THERE IS THE ANSWER = RIGHT THERE.")
         else:
             st.success("✅ Stage 4 Complete — *Anagram solved*")
 
@@ -4436,17 +4411,6 @@ Translate each 8-bit chunk to ASCII. What does it say?
                         st.rerun()
                     else:
                         st.error("The binary disagrees. Try again.")
-            with col2:
-                if st.button("💡 Hint", key="stage5_hint"):
-                    st.session_state.hint_counts[5] = st.session_state.hint_counts.get(5,0) + 1
-                    st.rerun()
-            h = st.session_state.hint_counts.get(5, 0)
-            if h >= 1:
-                st.caption("Hint 1: Each group of 8 bits is one letter. 01001011 = 75 in decimal = 'K' in ASCII.")
-            if h >= 2:
-                st.caption("Hint 2: The message is two words of encouragement. You're doing fine.")
-            if h >= 3:
-                st.caption("Hint 3: K=75, E=69, E=69, P=80, G=71, O=79, I=73, N=78, G=71")
         else:
             st.success("✅ Stage 5 Complete — *KEEP GOING*")
 
@@ -4580,21 +4544,6 @@ Then it will disappear and you must reproduce it.
                     else:
                         st.error("Not the answer. Think differently.")
                 col1, col2 = st.columns([3,1])
-                with col2:
-                    if st.button("💡 Hint", key=f"riddle_hint_{idx}"):
-                        st.session_state.hint_counts[f"r{idx}"] = st.session_state.hint_counts.get(f"r{idx}",0) + 1
-                        st.rerun()
-                h = st.session_state.hint_counts.get(f"r{idx}", 0)
-                chain_hints = [
-                    ["Hint: You find it in a library.", "Hint: It has chapters. You read it."],
-                    ["Hint: They're on the ground. You make them.", "Hint: Think about walking."],
-                    ["Hint: You do it every few seconds.", "Hint: You're doing it right now."],
-                ]
-                for hi, hint_text in enumerate(chain_hints[idx]):
-                    if h > hi:
-                        st.caption(hint_text)
-            else:
-                st.success("✅ All riddles complete.")
         else:
             st.success("✅ Stage 8 Complete — *Three riddles answered*")
 
@@ -4795,15 +4744,6 @@ Write it below.
                         st.rerun()
                     else:
                         st.error("One word. Any honest one.")
-            with col2:
-                if st.button("💡 Hint", key="stage12_hint"):
-                    st.session_state.hint_counts[12] = st.session_state.hint_counts.get(12,0) + 1
-                    st.rerun()
-            h = st.session_state.hint_counts.get(12, 0)
-            if h >= 1:
-                st.caption("Hint: There's no wrong answer. It just has to be true.")
-            if h >= 2:
-                st.caption("Hint: What does someone who completes a 6-hour puzzle prove about themselves?")
         else:
             st.success("✅ Stage 12 Complete.")
 
@@ -4879,10 +4819,26 @@ The answer, as of {fmt_time(total_time)} ago, is:
 *Screenshot this. You earned it.*
 *Or don't. You'll remember it anyway.*
 
+---
+
+### 💵 One More Thing
+
+As a reward for completing this puzzle, **Lawrence Hartman** has agreed to give you **$100.**
+
+Locate Lawrence Hartman.
+Show him this screen.
+Collect your $100.
+
+*Lawrence is aware of this arrangement.*
+*(Lawrence may not be aware of this arrangement.)*
+*(Good luck finding Lawrence.)*
+*(This is legally binding, probably.)*
+
+---
+
 ✨ **DUMB STUFF PUZZLE — COMPLETE** ✨
 """)
 
-        hints_total = sum(st.session_state.hint_counts.get(k, 0) for k in st.session_state.hint_counts)
         path_chosen = st.session_state.story_choices[-1] if st.session_state.story_choices else "unknown"
 
         st.info(f"""
